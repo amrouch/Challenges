@@ -4,6 +4,7 @@ const morgan = require('morgan');
 require('./database/connect');
 const bodyParser = require('body-parser');
 const routes = require('./routes/api');
+const route = require('./routes/apiUser');
 
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 
 app.use('/api', routes);
+app.use('/api', route);
 
 app.use(function (err, req, res, next) {
     res.status(422).send({ error: err.message });
